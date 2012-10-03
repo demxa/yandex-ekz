@@ -1,12 +1,14 @@
 #dock {
 	display: block;
-	margin: 30px auto;
-	top: 0px;
+	margin: 3px auto;
+	bottom: 0px;
 	width: 100%;
 	text-align: center;
 	overflow: hidden;
+	position: fixed;
 }
-	#dock ul {
+
+#dock ul {
 	margin: 0px -60px;
 	padding: 0px;
 	list-style: none;
@@ -15,7 +17,7 @@
 	text-align: center;
 	white-space: nowrap;
 	display: inline-block;
-	background: url("img/dock-middle.png") bottom left repeat-x;
+	background: url("../img/menu/dock-middle.png") bottom left repeat-x;
 }
 
 #dock ul:before,
@@ -31,13 +33,13 @@
 	#dock ul:before {
 	padding-left: 60px;
 	margin-left: -60px;
-	background: url("img/dock-left.png") bottom left repeat-x;
+	background: url("../img/menu/dock-left.png") bottom left repeat-x;
 } 
 
 #dock ul:after {
 	padding-right: 60px;
 	margin-right: -60px;
-	background: url("img/dock-right.png") bottom right repeat-x;
+	background: url("../img/menu/dock-right.png") bottom right repeat-x;
 }
 	/* Dock Icons */
 #dock li {
@@ -49,7 +51,7 @@
 	overflow: visible;
 }
 	#dock li.seperator {
-	background: url("img/dock-seperator.png") bottom left no-repeat;
+	background: url("../img/menu/dock-seperator.png") bottom left no-repeat;
 	width: 20px;
 	height: 158px;
 	position: relative;
@@ -69,7 +71,7 @@
 	line-height: 1.3em;
 	text-align: center;
 	font-family: Arial;
-	padding-top: 40px;
+	/*padding-top: 40px;*/
 	margin-bottom: 5px;
 	overflow: visible;
 }
@@ -107,7 +109,7 @@ body.no_js #dock li a:hover {
 	display: block;
 	height: 9px;
 	color: transparent;
-	background: transparent url("img/span.png") center top no-repeat;
+	background: transparent url("../img/menu/span.png") center top no-repeat;
 	position: absolute;
 	content: "";
 	text-align: center;
