@@ -5,9 +5,17 @@
 
 html, body {
   height: 100%;
+  font: 12px normal;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Arial;
+  -moz-box-sizing:border-box;
+-webkit-box-sizing:border-box;
+box-sizing:border-box;
 }
 
 .layout {
+-moz-box-sizing:border-box;
+-webkit-box-sizing:border-box;
+box-sizing:border-box;
   height: auto;
   min-height: 100%;
   background-image: url("../img/macwall.jpg");
@@ -15,35 +23,55 @@ html, body {
 }
 
 .sidebar {
-  float: left;
-  min-width: 17%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	float: left;
+	width: 20%;
+	height: 90%;
+	/*border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;*/
+	background-color: #DFE4EA;
+	border-right: 1px solid #C8CBD2;
+	border-bottom: 1px solid #C8CBD2;
+	margin-bottom: 10px;
+	padding: 5px;
 }
 
 .main {
-  margin: 0 0 0 17%;
-  width: 83%;
-  /*border: 1px solid black;*/
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	float: left;
+	height: 90%;
+	width: 80%;
+	overflow: hidden;
+	padding-left:10px;
+	background-color: #FFF;
+	border-bottom: 1px solid #C8CBD2;
+	padding: 5px;
+}
+
+.window_container {
+	position:fixed;
+	left: 50px;
+	width:80%;
+	height:80%;
+	margin: 1% auto;
 }
 
 .window {
-  top: 73px; 
-  left: 50px; 
-  bottom: 90px; 
-  right: 50px; 
-  position: fixed;
-  border-top: 1px solid #333;
-  border-left: 1px solid #8A8A8A;
-  border-right: 1px solid #8A8A8A;
-  border-bottom: 1px solid #8A8A8A;
-  background-color: #E6E6E6;
+	height:80%;
+	border-top: 1px solid #333;
+	border-left: 1px solid #8A8A8A;
+	border-right: 1px solid #8A8A8A;
+	border-bottom: 1px solid #8A8A8A;
+	background-color: #E6E6E6;
 }
 
 .wintitle {
-	position: fixed;
-	top: 50px; 
-	left: 50px; 
-	right: 50px; 
-	height: 23px;
+	height: 20px;
 	background: #979797; /* Для старых браузров */
     background: -moz-linear-gradient(bottom, #979797, #C4C4C4); /* Firefox 3.6+ */
     /* Chrome 1-9, Safari 4-5 */
@@ -60,10 +88,30 @@ html, body {
 	border-radius: 7px 7px 0 0;
 	-moz-border-radius: 7px 7px 0 0;
 	-webkit-border-radius: 7px 7px 0 0;
+	padding-left: 7px;
 }
 
+#date {
+	float: right;
+	padding: 1px 10px 0 0;
+}
+
+#ya {
+	width: 16px;
+	float:left;
+	margin: 2px 0 0 10px;
+	cursor: pointer;
+	background-image: url("../img/ya.png");
+	background-repeat: no-repeat;
+}
+
+.winbutton {
+	display: inline;
+	margin: 3px 2px 0 0;
+}
 
 .header {
+	height: 20px;
 	background: #95979B; /* Для старых браузров */
     background: -moz-linear-gradient(bottom, #95979B, #C5C7CE); /* Firefox 3.6+ */
     /* Chrome 1-9, Safari 4-5 */

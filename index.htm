@@ -5,30 +5,39 @@
 		<title>
 			Интерактивный интерфейс программы ШРИ
 		</title>
-		<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<!--<script type="text/javascript" charset="utf-8" src="js/js.js"></script>-->
+		<script type="text/javascript" charset="utf-8" src="js/jq.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/jqui.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/js.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/menu.js"></script>
 		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/jqui.css" />
 		<link rel="stylesheet" href="css/menu.css" />
 	</head>
 	<body>
 		<div class="layout">
 			<div class="header">
-				Ya
-			</div>
-			<div class="wintitle">
+				<div id="ya" onclick="$(location).attr('href', 'http://www.yandex.ru');">&nbsp;
 				</div>
-			<div class="window">
-
-				<div class="sidebar">
-					SIDEBAR
-				</div>
-				<div class="main">
-					CONTENT
+				<div id="date">
 				</div>
 			</div>
-		</div>
-		<div id="dock">
+			<div class="window_container" id="window_container">
+				<div class="wintitle" id="wintitle">
+					<img class="winbutton" src="img/button_close.png">
+					<img class="winbutton" src="img/button_min.png">
+					<img class="winbutton" src="img/button_exp.png">
+				</div>
+				<div class="window">
+					<div class="sidebar">
+						SIDEBAR
+					</div>
+					<div class="main">
+						MAC-like font!
+					</div>
+				</div>
+			</div>
+		
+			<div id="dock">
 				<ul>
 					<li><a href="#home"><span>Домой</span><img src="img/menu/icons/home128.png" alt="[home]" /></a></li>
 					<li><a href="#calendar"><span>Календарь</span><img src="img/menu/icons/calendar128.png" alt="[calendar]" /></a></li>
@@ -37,6 +46,7 @@
 					<li class="active"><a href="#import"><span>Импорт настроек</span><img src="img/menu/icons/import128.png" alt="[import]" /></a></li>
 					<li class="active"><a href="#export"><span>Экспорт настроек</span><img src="img/menu/icons/export128.png" alt="[export]" /></a></li>
 				</ul>
+			</div>
 		</div>
 	</body>
 <html>

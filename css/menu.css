@@ -2,7 +2,9 @@
 	display: block;
 	margin: 3px auto;
 	bottom: 0px;
-	width: 100%;
+	left: 50px;
+	right: 50px;
+	width: 60%;
 	text-align: center;
 	overflow: hidden;
 	position: fixed;
