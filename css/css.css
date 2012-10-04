@@ -26,7 +26,7 @@ html, body {
 }
 
 .window {
-  top: 70px; 
+  top: 73px; 
   left: 50px; 
   bottom: 90px; 
   right: 50px; 
@@ -43,7 +43,7 @@ html, body {
 	top: 50px; 
 	left: 50px; 
 	right: 50px; 
-	height: 20px;
+	height: 23px;
 	background: #979797; /* Для старых браузров */
     background: -moz-linear-gradient(bottom, #979797, #C4C4C4); /* Firefox 3.6+ */
     /* Chrome 1-9, Safari 4-5 */
