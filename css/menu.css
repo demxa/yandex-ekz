@@ -1,0 +1,135 @@
+#dock {
+	display: block;
+	margin: 3px auto;
+	bottom: 0px;
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+	position: fixed;
+}
+
+#dock ul {
+	margin: 0px -60px;
+	padding: 0px;
+	list-style: none;
+	height: 198px;
+	line-height: 198px;
+	text-align: center;
+	white-space: nowrap;
+	display: inline-block;
+	background: url("../img/menu/dock-middle.png") bottom left repeat-x;
+}
+
+#dock ul:before,
+#dock ul:after {
+	content: "";
+	color: transparent;
+	display: inline-block;
+	width: 0px;
+	padding-top: 60px;
+	margin-top: -60px;
+	vertical-align: bottom;
+}
+	#dock ul:before {
+	padding-left: 60px;
+	margin-left: -60px;
+	background: url("../img/menu/dock-left.png") bottom left repeat-x;
+} 
+
+#dock ul:after {
+	padding-right: 60px;
+	margin-right: -60px;
+	background: url("../img/menu/dock-right.png") bottom right repeat-x;
+}
+	/* Dock Icons */
+#dock li {
+	display: inline-block;
+	vertical-align: bottom;
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	overflow: visible;
+}
+	#dock li.seperator {
+	background: url("../img/menu/dock-seperator.png") bottom left no-repeat;
+	width: 20px;
+	height: 158px;
+	position: relative;
+	vertical-align: bottom;
+}
+	#dock li a {
+	height: 153px;
+	width: 48px;
+	display: inline-block;
+	text-align: center;
+	position: relative;
+	vertical-align: bottom;
+	text-decoration: none;
+	color: black;
+	white-space: normal;
+	letter-spacing: normal;	
+	line-height: 1.3em;
+	text-align: center;
+	font-family: Arial;
+	/*padding-top: 40px;*/
+	margin-bottom: 5px;
+	overflow: visible;
+}
+			
+body.no_js #dock li a:hover {
+	width: 128px !important;
+}
+	#dock li a span {
+	position: relative;
+	line-height: 1.3em;
+	display: none;
+	text-align: center;
+	font-weight: bold;
+	font-size: 80%;
+	padding: 4px 12px;
+	background-color: #EEE;
+	
+	opacity: 0.4;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+	
+	margin: 0px auto;
+				
+	top: -40px;
+	
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#dock li a:hover span {
+	display: inline-block;
+}
+
+#dock li a:hover span:after {
+	display: block;
+	height: 9px;
+	color: transparent;
+	background: transparent url("../img/menu/span.png") center top no-repeat;
+	position: absolute;
+	content: "";
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	margin-left: -16px;
+}
+
+#dock li a img {
+	height: auto;
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	bottom: 10px;
+	text-align: center;
+	border: 0px none;
+	margin-bottom: 15px;
+	
+	box-reflect: below 1px gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255,255,255,0.1)));
+	-webkit-box-reflect: below 1px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255,255,255,0.1)));
+	-moz-box-reflect: below 1px -moz-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255,255,255,0.1)));
+}
