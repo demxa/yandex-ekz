@@ -5,20 +5,22 @@
 		<title>
 			Интерактивный интерфейс программы ШРИ
 		</title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/jqui.css" />
+		<link rel="stylesheet" href="css/menu.css" />
+		<link rel="stylesheet" href="css/calendar.css" />
 		<script type="text/javascript" charset="utf-8" src="js/jq.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/jqui.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/js.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/menu.js"></script>
-		<link rel="stylesheet" href="css/css.css" />
-		<link rel="stylesheet" href="css/jqui.css" />
-		<link rel="stylesheet" href="css/menu.css" />
-	</head>
+		<script type="text/javascript" charset="utf-8" src="js/calendar.js"></script>
+			</head>
 	<body>
 		<div class="layout">
 			<div class="header">
-				<div id="ya" onclick="$(location).attr('href', 'http://www.yandex.ru');">&nbsp;
+				<div class="ya" id="ya" onclick="$(location).attr('href', 'http://www.yandex.ru');">&nbsp;
 				</div>
-				<div id="date">
+				<div class="date" id="date">
 				</div>
 			</div>
 			<div class="window_container" id="window_container">
@@ -28,11 +30,10 @@
 					<img class="winbutton" src="img/button_exp.png">
 				</div>
 				<div class="window">
-					<div class="sidebar">
-						SIDEBAR
+					<div class="sidebar" id="sidebar">
 					</div>
-					<div class="main">
-						MAC-like font!
+					<div class="main" id="main">
+						<input class="tedit" type="text" />
 					</div>
 				</div>
 			</div>
@@ -41,7 +42,7 @@
 				<ul>
 					<li><a href="#home"><span>Домой</span><img src="img/menu/icons/home128.png" alt="[home]" /></a></li>
 					<li><a href="#calendar"><span>Календарь</span><img src="img/menu/icons/calendar128.png" alt="[calendar]" /></a></li>
-					<li><a href="#edit"><span>Редактирование событий</span><img src="img/menu/icons/edit128.png" alt="[edit]" /></a></li>
+					<li><a href="#edit" onclick="drawAddForm();"><span>Редактирование событий</span><img src="img/menu/icons/edit128.png" alt="[edit]" /></a></li>
 					<li><a href="#presentations"><span>Презентации</span><img src="img/menu/icons/presentation128.png" alt="[presentations]" /></a></li>
 					<li class="active"><a href="#import"><span>Импорт настроек</span><img src="img/menu/icons/import128.png" alt="[import]" /></a></li>
 					<li class="active"><a href="#export"><span>Экспорт настроек</span><img src="img/menu/icons/export128.png" alt="[export]" /></a></li>
