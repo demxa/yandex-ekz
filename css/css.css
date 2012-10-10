@@ -1,7 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
-	font: 12px "Lucida Sans Unicode", "Lucida Grande", Arial;
+	font: 12px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 
 html, body {
@@ -27,25 +27,23 @@ html, body {
 	box-sizing:border-box;
 	font: 12px normal;
 	float: left;
-	width: 20%;
+	width: 220px;
 	height: 90%;
 	background-color: #DFE4EA;
 	border-right: 1px solid #C8CBD2;
 	border-bottom: 1px solid #C8CBD2;
 	margin-bottom: 10px;
 	padding: 5px;
+	overflow: hidden
 }
 
 .main {
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	font: 12px normal;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", Arial;
-	float: left;
 	height: 90%;
-	width: 80%;
-	overflow: hidden;
+	width: auto;
+	overflow: auto;
 	padding-left:10px;
 	background-color: #FFF;
 	border-bottom: 1px solid #C8CBD2;
@@ -58,6 +56,7 @@ html, body {
 	width:80%;
 	height:80%;
 	margin: 1% auto;
+	min-height: 250px;
 }
 
 .window {
@@ -90,6 +89,12 @@ html, body {
 	padding-left: 7px;
 }
 
+.wintitle_text {
+	position: absolute;
+	width: 90%;
+	text-align: center;
+}
+
 .date {
 	float: right;
 	padding: 1px 10px 0 0;
@@ -111,16 +116,16 @@ html, body {
 
 .header {
 	height: 20px;
-	background: #95979B; /* Для старых браузров */
-    background: -moz-linear-gradient(bottom, #95979B, #C5C7CE); /* Firefox 3.6+ */
-    /* Chrome 1-9, Safari 4-5 */
+	opacity: 0.8;
+	filter: alpha(opacity=0.8);
+	background: #95979B;
+    background: -moz-linear-gradient(bottom, #95979B, #C5C7CE);
     background: -webkit-gradient(linear, left bottom, left bottom, 
                 color-stop(0%,#95979B), color-stop(100%,#C5C7CE));
-    /* Chrome 10+, Safari 5.1+ */
     background: -webkit-linear-gradient(bottom, #95979B, #C5C7CE);
-    background: -o-linear-gradient(bottom, #95979B, #C5C7CE); /* Opera 11.10+ */
-    background: -ms-linear-gradient(bottom, #95979B, #C5C7CE); /* IE10 */
-    background: linear-gradient(bottom, #95979B, #C5C7CE); /* CSS3 */ 
+    background: -o-linear-gradient(bottom, #95979B, #C5C7CE); 
+    background: -ms-linear-gradient(bottom, #95979B, #C5C7CE); 
+    background: linear-gradient(bottom, #95979B, #C5C7CE);
     border: 1px solid #737373;
 }
 
@@ -135,25 +140,123 @@ html, body {
 }
 
 .tedit {
-	border-radius: 10px 10px 10px 10px;
-	-moz-border-radius: 10px 10px 10px 10px;
-	-webkit-border-radius: 10px 10px 10px 10px;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
 	padding: 1px 4px 1px 4px;
-	font: 12px "Lucida Sans Unicode", "Lucida Grande", Arial;
 	outline:none;
-	border: 1px solid blue;
+	border: 1px solid #ccc;
 }
 
 .tlable {
-	font: 12px "Lucida Sans Unicode", "Lucida Grande", Arial;
+	margin: 0 5px;
+	padding: 5px;
+}
+
+.tlable1 {
+	font-size: 9px;
+	color: #A0A8B4;
+	letter-spacing: 1px;
+	text-transform: uppercase;
 	margin: 0 5px;
 }
 
 .tbutton {
-	font: 12px "Lucida Sans Unicode", "Lucida Grande", Arial;
-	border-radius: 10px 10px 10px 10px;
-	-moz-border-radius: 10px 10px 10px 10px;
-	-webkit-border-radius: 10px 10px 10px 10px;
-	border: 0px solid blue;
+	height: 23px;
+	border: 1px solid #ccc;
+	background: #fff;
+	color: #666;
+	border-radius: 5px;
+	box-shadow: 0 0 2px #ccc;
+}
+
+.ok-dialog {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	font-size: 30px;
+	text-align: center;
+	vertical-align: middle;
+	color: red;
+	padding-top: 30px;
+	opacity: 0.8;
+	filter: alpha(opacity=0.8);
+	z-index: 100500;
 }
 	
+.file-load-block {
+	width: 310px;
+	height: 25px;
+	padding-top: 3px;
+	position: relative;
+	overflow: hidden;
+}
+
+.file-load-block input[type=file] {
+	opacity: 0;
+	filter: alpha(opacity=0);
+ 	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 100px;
+	z-index: 20;
+	cursor: pointer;
+	width: auto;
+}
+
+.file-load-block input[type=text] {
+	z-index: 1;
+	width: 190px;
+	padding-right: 10px;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}
+.file-load-block button {
+
+	height: 23px;
+}
+
+.file-button {
+	position: absolute;
+	right: 0;
+	width: 90px;
+}
+
+.file-load-block .button-hover {
+	box-shadow: inset 0 2px 2px #ccc;
+}
+
+/* Модификаторы. Сделаем БЭМ ближе :) */
+
+.file-button {
+	position: absolute;
+	right: 0;
+	width: 90px;
+}
+
+.fine-margin {
+	margin: 10px 2px;
+}
+
+.click-cursor {
+	cursor: pointer;
+}
+
+.size-evtname {
+	width: 500px;
+}
+
+.size-lector {
+	width: 250px;
+}
+
+.size-tezis {
+	width: 500px;
+	height: 200px;
+}
+
+.hidden {
+	display: none;
+}

@@ -1,12 +1,11 @@
 div.datepicker {
-	margin: 0 auto;
-	position: relative;
 	width: 196px;
-	height: 147px;
+	height: 190px;
 	position: absolute;
 	cursor: default;
 	top: 0;
 	left: 0;
+	padding-bottom: 30px;
 	display: none;
 }
 .datepickerContainer {
@@ -52,7 +51,7 @@ div.datepicker tbody a {
 	width: 20px;
 	line-height: 16px;
 	height: 16px;
-	padding-right: 2px;
+	padding: 0 3px 1px 0;
 }
 .datepickerYears a,
 .datepickerMonths a{
@@ -66,6 +65,9 @@ td.datepickerNotInMonth a {
 }
 tbody.datepickerDays td.datepickerSelected{
 	background: #136A9F;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
 }
 tbody.datepickerDays td.datepickerNotInMonth.datepickerSelected {
 	background: #17384d;

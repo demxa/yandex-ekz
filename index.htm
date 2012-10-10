@@ -16,6 +16,7 @@
 		<script type="text/javascript" charset="utf-8" src="js/calendar.js"></script>
 			</head>
 	<body>
+		<div class="ok-dialog hidden" id="ok-dialog"></div>
 		<div class="layout">
 			<div class="header">
 				<div class="ya" id="ya" onclick="$(location).attr('href', 'http://www.yandex.ru');">&nbsp;
@@ -28,12 +29,13 @@
 					<img class="winbutton" src="img/button_close.png">
 					<img class="winbutton" src="img/button_min.png">
 					<img class="winbutton" src="img/button_exp.png">
+					<span class="wintitle_text" id="wintitle_text">Главная</span>
 				</div>
 				<div class="window">
 					<div class="sidebar" id="sidebar">
 					</div>
 					<div class="main" id="main">
-						<input class="tedit" type="text" />
+						<input class="tedit" id="tedit" type="text" />
 					</div>
 				</div>
 			</div>
