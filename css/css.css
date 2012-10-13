@@ -53,14 +53,14 @@ html, body {
 .window_container {
 	position:fixed;
 	left: 50px;
-	width:80%;
+	width:70%;
 	height:80%;
 	margin: 1% auto;
 	min-height: 250px;
 }
 
 .window {
-	height:80%;
+	height:85%;
 	border-top: 1px solid #333;
 	border-left: 1px solid #8A8A8A;
 	border-right: 1px solid #8A8A8A;
@@ -139,17 +139,22 @@ html, body {
 	position: relative;
 }
 
+.tab {
+	display: none;
+}
+
 .tedit {
 	border-radius: 8px 8px 8px 8px;
 	-moz-border-radius: 8px 8px 8px 8px;
 	-webkit-border-radius: 8px 8px 8px 8px;
 	padding: 1px 4px 1px 4px;
+	margin: 5px;
 	outline:none;
 	border: 1px solid #ccc;
 }
 
 .tlable {
-	margin: 0 5px;
+	margin: 5px;
 	padding: 5px;
 }
 
@@ -158,7 +163,27 @@ html, body {
 	color: #A0A8B4;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	margin: 0 5px;
+	padding: 5px;
+	margin: 5px;
+}
+
+.tlable2 {
+	margin: 5px;
+	padding: 5px;
+	color: #fff;
+	font-size: 13px;
+}
+
+.tlable3 {
+	margin: 5px;
+	padding: 5px;
+	font-size: 14px;
+	color: #fff
+}
+
+.modifyLink {
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 .tbutton {
@@ -168,6 +193,8 @@ html, body {
 	color: #666;
 	border-radius: 5px;
 	box-shadow: 0 0 2px #ccc;
+	margin: 5px;
+	cursor: pointer;
 }
 
 .ok-dialog {
@@ -185,6 +212,20 @@ html, body {
 	z-index: 100500;
 }
 	
+.infoTip {
+	opacity: 0.8;
+	filter: alpha(opacity=0.8);
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
+	background-color: #80A5D0;
+	padding: 10px;
+	position:fixed;
+	width: 20%;
+	margin: 1% auto;
+	left: 76%;
+}
+
 .file-load-block {
 	width: 310px;
 	height: 25px;
@@ -203,9 +244,11 @@ html, body {
 	z-index: 20;
 	cursor: pointer;
 	width: auto;
+	padding: 10px;
 }
 
 .file-load-block input[type=text] {
+	margin: 0 5px;
 	z-index: 1;
 	width: 190px;
 	padding-right: 10px;
@@ -214,7 +257,7 @@ html, body {
 	-o-text-overflow: ellipsis;
 }
 .file-load-block button {
-
+	margin: 0 5px;
 	height: 23px;
 }
 
@@ -229,8 +272,8 @@ html, body {
 }
 
 #calendar {
-	margin: 0 auto;
-	width: 100%;
+	padding-top: 10px;
+	width: 70%;
 }
 
 /* Модификаторы. Сделаем БЭМ ближе :) */
@@ -262,6 +305,27 @@ html, body {
 	height: 150px;
 }
 
+.size-export {
+	width: 500px;
+	height: 300px;
+}
+
+.size-time {
+	width: 50px;
+}
+
+.size-time:focus {
+		background-color: #ccc;
+}
+
 .hidden {
 	display: none;
+}
+
+.block {
+	display: block;
+}
+
+.inline {
+	display: inline;
 }

@@ -1037,8 +1037,14 @@ $.fn.fullCalendar = function(options) {
 	var eventSources = options.eventSources || [];
 	delete options.eventSources;
 	if (options.events) {
-		eventSources.push(options.events);
+		var tmp_options = [];
+		for(var i = 0; i < options.events.length; i++)	{
+			if(options.events[i]+''!=='null' && options.events[i]+''!=='undefined')
+				tmp_options.push(options.events[i])
+		}
+		eventSources.push(tmp_options);
 		delete options.events;
+		delete tmp_options;
 	}
 	
 

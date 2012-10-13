@@ -1,54 +1,177 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
 		<title>
 			Интерактивный интерфейс программы ШРИ
 		</title>
-		<link rel="stylesheet" href="css/css.css" />
-		<link rel="stylesheet" href="css/jqui.css" />
-		<link rel="stylesheet" href="css/menu.css" />
-		<link rel="stylesheet" href="css/calendar.css" />
-		<script type="text/javascript" charset="utf-8" src="js/jq.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/jqui.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/js.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/menu.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/calendar.js"></script>
-			</head>
+		<link rel=stylesheet href="css/css.css">
+		<link rel=stylesheet href="css/jqui.css">
+		<link rel=stylesheet href="css/menu.css">
+		<link rel=stylesheet href="css/calendar.css">
+		<script type="text/javascript" charset=utf-8 src="js/jq.js"></script>
+		<script type="text/javascript" charset=utf-8 src="js/jqui.js"></script>
+		<script type="text/javascript" charset=utf-8 src="js/js.js"></script>
+		<script type="text/javascript" charset=utf-8 src="js/menu.js"></script>
+		<script type="text/javascript" charset=utf-8 src="js/calendar.js"></script>
+	</head>
 	<body>
 		<div class="ok-dialog hidden" id="ok-dialog"></div>
 		<div class="layout">
 			<div class="header">
-				<div class="ya" id="ya" onclick="$(location).attr('href', 'http://www.yandex.ru');">&nbsp;
+				<div class=ya id=ya>
+					<ul>
+						<li class="inline"><a href="#home"><span>Домой</span></a></li>
+						<li class="inline"><a href="#add"><span>Создать событие</span></a></li>
+						<li class="inline"><a href="#calendar"><span>Календарь</span></a></li>
+						<li class="inline"><a href="#import"><span>Импорт настроек</span></a></li>
+						<li class="inline"><a href="#export"><span>Экспорт настроек</span></a></li>
+					</ul>
 				</div>
 				<div class="date" id="date">
 				</div>
 			</div>
-			<div class="window_container" id="window_container">
-				<div class="wintitle" id="wintitle">
-					<img class="winbutton" src="img/button_close.png">
-					<img class="winbutton" src="img/button_min.png">
-					<img class="winbutton" src="img/button_exp.png">
-					<span class="wintitle_text" id="wintitle_text">Главная</span>
+			<div class=window_container id=window_container>
+				<div class=wintitle id=wintitle>
+					<img class=winbutton src="img/button_close.png">
+					<img class=winbutton src="img/button_min.png">
+					<img class=winbutton src="img/button_exp.png">
+					<span class=wintitle_text id=wintitle_text>Главная</span>
 				</div>
-				<div class="window">
-					<div class="sidebar" id="sidebar">
+				<div class=window>
+					<div class=sidebar id=sidebar>
+						<span class=tlable1>Календарь</span>
+						<div id=leftCalendar></div>
+						<span class=tlable1>Время</span>
+						<input type=hidden id=evtTime>
 					</div>
-					<div class="main" id="main">
-						<input class="tedit" id="tedit" type="text" />
+					<div class=main id=main>
+						<div class=tab id=createEvent>
+							<table>
+								<tr>
+									<td class=tlable>Название события</td>
+									<td><input type=text class='tedit size-evtname' id=evtName /></td>
+								</tr>
+								<tr>
+									<td class=tlable>Дата события:</td>
+									<td class=evtDate><не указано></td>
+								</tr>
+								<tr>
+									<td class=tlable>Время события:</td>
+								<td>
+									<input type=text class='tedit size-time' id=evtTimeStart>
+									&nbsp;-&nbsp;
+									<input type=text class='tedit size-time' id=evtTimeEnd>
+								</td>
+								</tr>
+									<td class=tlable>Тезисы</td>
+									<td><textarea class='tedit size-tezis' id=evtNote></textarea></td>
+								</tr>
+								<tr>
+									<td class=tlable>Файл с презентацией</td>
+									<td class=fileload>
+										<div class=file-load-block>
+											<input type=file id=file />
+											<div class=fileLoad>
+												<input type=text class=tedit id=evtFile value='Выбрать файл' disabled />
+												<button class='tbutton file-button click-cursor'>Выбрать</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class=tlable>Лектор</td>
+									<td><input type=text class='tedit size-lector' id=evtLector /></td>
+								</tr>
+								<tr>
+									<td colspan=2>
+										<button class='tbutton fine-margin click-cursor' id=createEvt>Добавить</button>
+										<input type=hidden id=evtDate />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class=tab id=editEvent>
+							<table>
+								<tr>
+									<td class=tlable>Название события</td>
+									<td><input type=text class='tedit size-evtname' id=editEvtName /></td>
+								</tr>
+								<tr>
+									<td class=tlable>Дата события:</td>
+									<td class=editEvtDate><не указано></td>
+								</tr>
+								<tr>
+									<td class=tlable>Время события:</td>
+								<td>
+									<input type=text class='tedit size-time' id=editEvtTimeStart>
+									&nbsp;-&nbsp;
+									<input type=text class='tedit size-time' id=editEvtTimeEnd>
+								</td>
+								</tr>
+									<td class=tlable>Тезисы</td>
+									<td><textarea class='tedit size-tezis' id=editEvtNote></textarea></td>
+								</tr>
+								<tr>
+									<td class=tlable>Файл с презентацией</td>
+									<td class=fileload>
+										<div class=file-load-block>
+											<input type=file id=editFile />
+											<div class=fileLoad>
+												<input type=text class=tedit id=editEvtFile value='Выбрать файл' disabled />
+												<button class='tbutton file-button click-cursor'>Выбрать</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class=tlable>Лектор</td>
+									<td><input type=text class='tedit size-lector' id=editEvtLector /></td>
+								</tr>
+								<tr>
+									<td colspan=2>
+										<button class='tbutton fine-margin click-cursor' id=editEvt>Изменить</button>
+										<input type=hidden id=editEvtDate />
+										<input type=hidden id=editId />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class=tab id=calendar></div>
+						<div class=tab id=export>
+							<span class='tlable'>Формат .ics:</span><br>
+							<textarea class='tedit size-export' id=evtExportCode></textarea><br>
+							<input type=button class=tbutton id=evtExport value='В файл'>
+						</div>
+						<div class=tab id=import>
+							<span class='tlable'>Формат .ics:</span><br>
+							<textarea class='tedit size-export' id=evtImportCode></textarea><br>
+							<input type=button class=tbutton id=evtImport value='Загрузить'>
+						</div>	
 					</div>
 				</div>
 			</div>
 		
 			<div id="dock">
 				<ul>
-					<li><a href="#home"><span>Домой</span><img src="img/menu/icons/home128.png" alt="[home]" /></a></li>
-					<li><a href="#calendar" onclick="drawViewForm();"><span>Календарь</span><img src="img/menu/icons/calendar128.png" alt="[calendar]" /></a></li>
-					<li><a href="#edit" onclick="drawAddForm();"><span>Редактирование событий</span><img src="img/menu/icons/edit128.png" alt="[edit]" /></a></li>
-					<li><a href="#presentations"><span>Презентации</span><img src="img/menu/icons/presentation128.png" alt="[presentations]" /></a></li>
-					<li class="active"><a href="#import"><span>Импорт настроек</span><img src="img/menu/icons/import128.png" alt="[import]" /></a></li>
-					<li class="active"><a href="#export"><span>Экспорт настроек</span><img src="img/menu/icons/export128.png" alt="[export]" /></a></li>
+					<li><a href="#home"><span>Домой</span><img src="img/menu/icons/home128.png"></a></li>
+					<li><a href="#add"><span>Создать событие</span><img src="img/menu/icons/edit128.png"></a></li>
+					<li><a href="#calendar"><span>Календарь</span><img src="img/menu/icons/calendar128.png"></a></li>
+					<li class="active"><a href="#import"><span>Импорт настроек</span><img src="img/menu/icons/import128.png"></a></li>
+					<li class="active"><a href="#export"><span>Экспорт настроек</span><img src="img/menu/icons/export128.png"></a></li>
 				</ul>
+			</div>
+			<div class=infoTip>
+				<div class=closeMe>&nbsp;</div>
+				<span class='tlable2 block'> < Выберите событие в календаре,</span>
+				<span class='tlable2 block'>чтобы узнать подробности</span>
+				<span class='tlable3 block' id=infoEvtName></span>
+				<span class='tlable3 block' id=infoEvtDate></span>
+				<span class='tlable3 block' id=infoEvtTezis></span>
+				<span class='tlable3 block' id=infoEvtFile></span>
+				<span class='tlable3 block' id=infoEvtLector></span>
+				<span class='modifyLink block' id=infoEditEvt>Редактировать</span>
+				<span class='modifyLink block' id=infoDeleteEvt>Удалить</span>
 			</div>
 		</div>
 	</body>
