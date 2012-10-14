@@ -1,30 +1,30 @@
 * {
 	margin: 0;
 	padding: 0;
-	font: 12px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	font: 12px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif
 }
 
 html, body {
 	height: 100%;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box
 }
 
 .layout {
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 	height: auto;
 	min-height: 100%;
 	background-image: url("../img/macwall.jpg");
-	background-size: cover;
+	background-size: cover
 }
 
 .sidebar {
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 	font: 12px normal;
 	float: left;
 	width: 220px;
@@ -38,81 +38,89 @@ html, body {
 }
 
 .main {
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 	height: 90%;
 	width: auto;
 	overflow: auto;
-	padding-left:10px;
+	padding-left: 10px;
 	background-color: #FFF;
 	border-bottom: 1px solid #C8CBD2;
-	padding: 5px;
+	padding: 5px
 }
 
 .window_container {
-	position:fixed;
+	position: fixed;
 	left: 50px;
-	width:70%;
-	height:80%;
+	width: 70%;
+	height: 80%;
 	margin: 1% auto;
-	min-height: 250px;
+	min-height: 250px
 }
 
 .window {
-	height:85%;
+	height: 85%;
 	border-top: 1px solid #333;
 	border-left: 1px solid #8A8A8A;
 	border-right: 1px solid #8A8A8A;
 	border-bottom: 1px solid #8A8A8A;
-	background-color: #E6E6E6;
+	background-color: #E6E6E6
 }
 
 .wintitle {
 	height: 20px;
-	background: #979797; /* Для старых браузров */
-    background: -moz-linear-gradient(bottom, #979797, #C4C4C4); /* Firefox 3.6+ */
-    /* Chrome 1-9, Safari 4-5 */
+	background: #979797;
+    background: -moz-linear-gradient(bottom, #979797, #C4C4C4); 
     background: -webkit-gradient(linear, left bottom, left bottom, 
                 color-stop(0%,#979797), color-stop(100%,#C4C4C4));
-    /* Chrome 10+, Safari 5.1+ */
     background: -webkit-linear-gradient(bottom, #979797, #C4C4C4);
-    background: -o-linear-gradient(bottom, #979797, #C4C4C4); /* Opera 11.10+ */
-    background: -ms-linear-gradient(bottom, #979797, #C4C4C4); /* IE10 */
-    background: linear-gradient(bottom, #979797, #C4C4C4); /* CSS3 */ 
+    background: -o-linear-gradient(bottom, #979797, #C4C4C4); 
+    background: -ms-linear-gradient(bottom, #979797, #C4C4C4); 
+    background: linear-gradient(bottom, #979797, #C4C4C4);
     border-top: 1px solid #8A8A8A;
 	border-left: 1px solid #8A8A8A;
 	border-right: 1px solid #8A8A8A;
 	border-radius: 7px 7px 0 0;
 	-moz-border-radius: 7px 7px 0 0;
 	-webkit-border-radius: 7px 7px 0 0;
-	padding-left: 7px;
+	padding-left: 7px
 }
 
 .wintitle_text {
 	position: absolute;
 	width: 90%;
-	text-align: center;
+	text-align: center
 }
 
 .date {
 	float: right;
-	padding: 1px 10px 0 0;
+	padding: 1px 10px 0 0
 }
 
 .ya {
 	width: 16px;
-	height:16px;
-	float:left;
+	height: 16px;
+	float: left;
 	margin: 2px 0 0 10px;
 	cursor: pointer;
 	background-image: url("../img/ya.png");
-	background-repeat: no-repeat;
+	background-repeat: no-repeat
+}
+
+.aboutme {
+	width: 16px;
+	height: 16px;
+	float: right;
+	margin: 2px 5px 0 10px;
+	cursor: pointer;
+	background-image: url("../img/aboutme.png");
+	background-repeat: no-repeat
 }
 
 .winbutton {
 	display: inline;
-	margin: 3px 2px 0 0;
+	margin: 3px 2px 0 0
 }
 
 .header {
@@ -127,7 +135,7 @@ html, body {
     background: -o-linear-gradient(bottom, #95979B, #C5C7CE); 
     background: -ms-linear-gradient(bottom, #95979B, #C5C7CE); 
     background: linear-gradient(bottom, #95979B, #C5C7CE);
-    border: 1px solid #737373;
+    border: 1px solid #737373
 }
 
 .footer {
@@ -137,11 +145,11 @@ html, body {
 	height: 210px;
 	margin-top: -210px;
 	overflow: hidden;
-	position: relative;
+	position: relative
 }
 
 .tab {
-	display: none;
+	display: none
 }
 
 .tedit {
@@ -150,13 +158,13 @@ html, body {
 	-webkit-border-radius: 8px 8px 8px 8px;
 	padding: 1px 4px 1px 4px;
 	margin: 5px;
-	outline:none;
-	border: 1px solid #ccc;
+	outline: none;
+	border: 1px solid #ccc
 }
 
 .tlable {
 	margin: 5px;
-	padding: 5px;
+	padding: 5px
 }
 
 .tlable1 {
@@ -165,14 +173,14 @@ html, body {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	padding: 5px;
-	margin: 5px;
+	margin: 5px
 }
 
 .tlable2 {
 	margin: 5px;
 	padding: 5px;
 	color: #fff;
-	font-size: 13px;
+	font-size: 13px
 }
 
 .tlable3 {
@@ -192,12 +200,12 @@ html, body {
 
 .tlable4:hover {
 	background-color: #3770C0;
-	color: #fff;
+	color: #fff
 }
 
 .modifyLink {
 	text-decoration: underline;
-	cursor: pointer;
+	cursor: pointer
 }
 
 .tbutton {
@@ -208,7 +216,7 @@ html, body {
 	border-radius: 5px;
 	box-shadow: 0 0 2px #ccc;
 	margin: 5px;
-	cursor: pointer;
+	cursor: pointer
 }
 
 .ok-dialog {
@@ -223,7 +231,7 @@ html, body {
 	padding-top: 30px;
 	opacity: 0.8;
 	filter: alpha(opacity=0.8);
-	z-index: 100500;
+	z-index: 100500
 }
 	
 .infoTip {
@@ -238,7 +246,7 @@ html, body {
 	width: 20%;
 	margin: 1% auto;
 	left: 76%;
-	z-index:5;
+	z-index:5
 }
 
 .file-load-block {
@@ -246,7 +254,7 @@ html, body {
 	height: 25px;
 	padding-top: 3px;
 	position: relative;
-	overflow: hidden;
+	overflow: hidden
 }
 
 .file-load-block input[type=file] {
@@ -259,7 +267,7 @@ html, body {
 	z-index: 20;
 	cursor: pointer;
 	width: auto;
-	padding: 10px;
+	padding: 10px
 }
 
 .file-load-block input[type=text] {
@@ -267,28 +275,28 @@ html, body {
 	z-index: 1;
 	width: 190px;
 	padding-right: 10px;
-	white-space:nowrap;
+	white-space: nowrap;
 	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
+	-o-text-overflow: ellipsis
 }
 .file-load-block button {
 	margin: 0 5px;
-	height: 23px;
+	height: 23px
 }
 
 .file-button {
 	position: absolute;
 	right: 0;
-	width: 90px;
+	width: 90px
 }
 
 .file-load-block .button-hover {
-	box-shadow: inset 0 2px 2px #ccc;
+	box-shadow: inset 0 2px 2px #ccc
 }
 
 #calendar {
 	padding-top: 10px;
-	width: 100%;
+	width: 100%
 }
 
 /* Модификаторы. Сделаем БЭМ ближе :) */
@@ -296,54 +304,54 @@ html, body {
 .file-button {
 	position: absolute;
 	right: 0;
-	width: 90px;
+	width: 90px
 }
 
 .fine-margin {
-	margin: 10px 2px;
+	margin: 10px 2px
 }
 
 .click-cursor {
-	cursor: pointer;
+	cursor: pointer
 }
 
 .size-evtname {
-	width: 400px;
+	width: 400px
 }
 
 .size-lector {
-	width: 250px;
+	width: 250px
 }
 
 .size-tezis {
 	width: 400px;
-	height: 150px;
+	height: 150px
 }
 
 .size-export {
 	width: 500px;
-	height: 300px;
+	height: 300px
 }
 
 .size-time {
-	width: 50px;
+	width: 50px
 }
 
 .size-time:focus {
-		background-color: #ccc;
+		background-color: #ccc
 }
 
 .hidden {
-	display: none;
+	display: none
 }
 
 .block {
-	display: block;
+	display: block
 }
 
 .inline {
 	list-style: none;
-	margin-left: 20px;
+	margin-left: 20px
 }
 
 .expand_window {
@@ -352,27 +360,28 @@ html, body {
 	left: 0 !important;
 	float: left;
 	width: 100%;
-	height: 100%;
+	height: 100%
 }
 
 /* Версия для печати */
 
 
 .printer {
-	margin: 0 auto;
+	margin: 0 auto
 }
 
 .print_row {
 	display: block;
 	border: 1px solid black;
 	padding: 4px 6px;
-	margin: 2px;	
+	margin: 2px
 }
 
 .print_row_title {
 	width: 65%;
-	float: left;
+	float: left
 }
 
 .lector {
-	font-size: 10px;
+	font-size: 10px
+}

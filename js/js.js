@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	var date = new Date();
+	
 	$('#leftCalendar').DatePicker({
 		flat: true,
 		date: [date.getFullYear(),date.getMonth()+1,date.getDate()].join('-'),
@@ -11,6 +12,7 @@ $(document).ready(function(){
 			$('.evtDate, .editEvtDate').html(formated);
 		}
 	});	
+	
 	$(function(){
     $('#evtTime').scroller({
         preset: 'time',
@@ -25,6 +27,7 @@ $(document).ready(function(){
 			if($('#editEvtTimeEnd').attr('focus')==1) $('#editEvtTimeEnd').val($('#evtTime').val());
 		});    
 	});
+	
 	//небольшой хак, чтобы с localStorage можно было работать как с объектом
 	if(isLocalStorageAvailable()) {
 		if(!localStorage['storage'])
@@ -33,7 +36,8 @@ $(document).ready(function(){
 		if(!myStorage['events']) myStorage['events'] = [];
 		if(!myStorage['freeid']) myStorage['freeid'] = 0;
 	}
-	else alert('Ваш браузер устарел. Данное веб-приложение не сможет работать на старой версии браузера. Пожалуйста, обновитесь'); //TODO: сделать отображение через DOM
+	else alert('Ваш браузер устарел. Данное веб-приложение не сможет работать на старой версии браузера. Пожалуйста, обновитесь'); 
+
 	//день недели как на маке
     (function(){
 		wday = [];
@@ -48,6 +52,7 @@ $(document).ready(function(){
         $("#date").html(time);
         window.setTimeout(arguments.callee, 1000);
     })();
+	
 	//чтобы можно было двигать окошко
 	$(function() {
 		$( "#window_container" ).draggable({ 
@@ -57,6 +62,7 @@ $(document).ready(function(){
 			containment: "document"
 		});
 	});
+	
 	//анимация кнопок окна
 	$(".winbutton").each(function() {
 		$(this).mouseover(function() {
@@ -66,6 +72,8 @@ $(document).ready(function(){
 			$(this).attr('src',$(this).attr('src').replace("_l",""));
 		});
 	});
+	
+	//главное меню
 	$('a[href=#home]').click(function() {
 		$('#window_container').show();
 	});
@@ -74,39 +82,57 @@ $(document).ready(function(){
 	$('a[href=#import]').click(drawImportForm);
 	$('a[href=#export]').click(drawExportForm);
 	$('#ya').click(function() { $(location).attr('href', 'http://www.yandex.ru') });
+	
+	//иконки сверху
+	$('#aboutme').click(function() { $(location).attr('href', 'http://clubs.ya.ru/4611686018427468886/replies.xml?item_no=204') });
 	$('.closeMe').click(function() {
 		$('.infoTip').hide();
 	});
+	
 	$('#infoEditEvt').click(function() {
 		drawEditForm();
 		$('#leftCalendar').DatePickerSetDate($('#editEvtDate').val(), true);
 		$("#evtTime").scroller('setValue', $('#editEvtTimeStart').val().split(/:/), true, 1);
 	});
+	
 	$('#infoDeleteEvt').click(function() {
 		deleteEvt($('#editId').val());
 		drawViewForm();
 		clearInfoTip();
 	});
+	
 	$('.tlable4').click(function(){
 		$('.tlable4').css('font-weight','normal');
 		$(this).css('font-weight','bold');
-	});	
+	});
+	
+	//кнопки окна
 	$('.winbutton').eq(0).click(function() {
 		drawViewForm();
 		$('#window_container').hide();
 		
 	});
+	
 	$('.winbutton').eq(1).click(function() {
 		$('#window_container').hide();
 	});
+	
 	$('.winbutton').eq(2).click(function() {
 		$('#window_container').toggleClass('expand_window');
 		$('#calendar').fullCalendar('render');
 	});
+	
+	//верхнее меню
+	$('.tlable4').eq(0).click(drawViewForm);
+	$('.tlable4').eq(1).click(drawAddForm);
+	$('.tlable4').eq(2).click(drawImportForm);
+	$('.tlable4').eq(3).click(drawExportForm);
+	$('.tlable4').eq(4).click(function() { $(location).attr('href', 'http://clubs.ya.ru/4611686018427468886/') });
 	clearInfoTip();
 	drawViewForm();
 });
 
+//чтобы очистить localStorage, раскомментируй строку ниже
 //localStorage.removeItem('storage');
 
 
@@ -122,7 +148,7 @@ function isLocalStorageAvailable() {
 //функция записи в localStorage
 function writeToStorage() {
 	if(myStorage) localStorage['storage'] = JSON.stringify(myStorage);
-	else alert('Хранилище пусто'); //TODO: сделать нормальную обработку
+	else alert('Хранилище пусто');
 }
 
 //функция создания базового события в календаре
@@ -283,6 +309,7 @@ function drawEditForm() {
 		$('#wintitle_text').html('Редактирование события');
 }
 
+//форма экспорта
 function drawExportForm() {
 	$('.tab').hide();
 	$('#export').show();
@@ -294,6 +321,7 @@ function drawExportForm() {
 	});
 }
 
+//форма импорта
 function drawImportForm() {
 	$('.tab').hide();
 	$('#import').show();
@@ -383,6 +411,7 @@ function humanTime(sd,ed)  {
 	return [date,startTime,endTime];
 }
 
+//собираем ics-файлик
 function exportIcs(storage) {
 	var ics = "BEGIN:VCALENDAR\n\
 PRODID:YANDEX\n\
@@ -415,6 +444,7 @@ END:VEVENT\n";
 	return ics;
 }
 
+//генерация версии для печати
 function printVersion() {
 	$('.layout').hide();
 	$('body').append($('<div />', { 'class': 'printer' }));
@@ -425,8 +455,10 @@ function printVersion() {
 		var row = $('<span />', { 'class': 'print_row' }).html('<p class=print_row_title>'+time[0]+' '+mas[i][1].title+' c '+time[1]+' до '+time[2]+'</p><p class=lector>'+(mas[i][1].lector==''?mas[i][1].note:mas[i][1].lector)+'</p>');
 		$('.printer').append(row);
 	}
+	window.print();
 }
 
+//хитрая ф-ция для сортировки массива объкетов :)
 function sortDate() {
 	var tmp = [];
 	var tmp_obj = [];
