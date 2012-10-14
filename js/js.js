@@ -50,8 +50,12 @@ $(document).ready(function(){
     })();
 	//чтобы можно было двигать окошко
 	$(function() {
-		$( "#window_container" ).draggable({ handle: "#wintitle" });
-		$( ".infoTip" ).draggable({ containment: "document" });
+		$( "#window_container" ).draggable({ 
+			handle: "#wintitle"
+		});
+		$( ".infoTip" ).draggable({ 
+			containment: "document"
+		});
 	});
 	//анимация кнопок окна
 	$(".winbutton").each(function() {
@@ -62,10 +66,11 @@ $(document).ready(function(){
 			$(this).attr('src',$(this).attr('src').replace("_l",""));
 		});
 	});
-	//$('a[href=#home]').click(drawHomeForm);
-	$('a[href=#calendar]').click(drawViewForm);
+	$('a[href=#home]').click(function() {
+		$('#window_container').show();
+	});
 	$('a[href=#add]').click(drawAddForm);
-	//$('a[href=#hz]').click(drawHzForm);
+	$('a[href=#print]').click(printVersion);
 	$('a[href=#import]').click(drawImportForm);
 	$('a[href=#export]').click(drawExportForm);
 	$('#ya').click(function() { $(location).attr('href', 'http://www.yandex.ru') });
@@ -74,14 +79,32 @@ $(document).ready(function(){
 	});
 	$('#infoEditEvt').click(function() {
 		drawEditForm();
+		$('#leftCalendar').DatePickerSetDate($('#editEvtDate').val(), true);
+		$("#evtTime").scroller('setValue', $('#editEvtTimeStart').val().split(/:/), true, 1);
 	});
 	$('#infoDeleteEvt').click(function() {
 		deleteEvt($('#editId').val());
 		drawViewForm();
 		clearInfoTip();
 	});
+	$('.tlable4').click(function(){
+		$('.tlable4').css('font-weight','normal');
+		$(this).css('font-weight','bold');
+	});	
+	$('.winbutton').eq(0).click(function() {
+		drawViewForm();
+		$('#window_container').hide();
+		
+	});
+	$('.winbutton').eq(1).click(function() {
+		$('#window_container').hide();
+	});
+	$('.winbutton').eq(2).click(function() {
+		$('#window_container').toggleClass('expand_window');
+		$('#calendar').fullCalendar('render');
+	});
 	clearInfoTip();
-	
+	drawViewForm();
 });
 
 //localStorage.removeItem('storage');
@@ -154,16 +177,12 @@ function drawAddForm() {
 
 	$('#createEvt').click(function(){
 
-			var fullMinutes = (new Date()).getTimezoneOffset();
-			var hours = Math.floor(Math.abs(fullMinutes / 60));
-			var minutes = Math.abs(fullMinutes % 60);
-			var offset = (fullMinutes >= 0 ? '-' : '+') + (hours > 9 ? '' : '0') + hours + (minutes > 9 ? ':' : ':0') + minutes;
-
-		if($('#evtDate').val()!='') {
-			if($('#evtTimeStart').val()!='' && $('#evtTimeEnd').val()!='') {
-				var startDateStr = (new Date($('#evtDate').val()+'T'+$('#evtTimeStart').val()+':00'+offset)).toString();
-				var endDateStr = (new Date($('#evtDate').val()+'T'+$('#evtTimeEnd').val()+':00'+offset)).toString();
+		if($('#evtDate').val()!=='') {
+			if($('#evtTimeStart').val()!=='' && $('#evtTimeEnd').val()!=='') {
+				var startDateStr = (new Date($('#evtDate').val()+'T'+$('#evtTimeStart').val()+':00'+getMyOffset())).toString();
+				var endDateStr = (new Date($('#evtDate').val()+'T'+$('#evtTimeEnd').val()+':00'+getMyOffset())).toString();
 				createEvt($('#evtName').val(), startDateStr, endDateStr, $('#evtNote').val(), $('#evtFile').val(), $('#evtLector').val());
+					drawViewForm();
 					$('#ok-dialog').css('padding-top',$(window).height()/2-40).html('Сохранено').fadeIn();
 					setTimeout(function() {$('#ok-dialog').fadeOut();}, 1000);
 					$('textarea, :input[type=text]').val('');
@@ -173,12 +192,14 @@ function drawAddForm() {
 		}
 		else alert('Укажите дату события');
 		
-		$('#wintitle_text').html('Добавить событие');
+		
 	});
+	$('#wintitle_text').html('Добавить событие');
 }
 
 //форма просмотра календаря
 function drawViewForm() {
+	$('#window_container').show();
 	var allEvents = [];
 	$.extend(true,allEvents,myStorage['events']);
 	console.log(allEvents);
@@ -188,6 +209,8 @@ function drawViewForm() {
 			eventClick: function(e) {
 				$('#editId').val(e.id);
 				drawInfoTip();
+				$('#leftCalendar').DatePickerSetDate($('#infoEvtDate').html().split(/,/)[0], true);
+				$("#evtTime").scroller('setValue', $('#infoEvtDate').html().split(/ /)[2].split(/:/), true, 1);
 			},
 			dayClick: function(date, allDay, jsEvent, view) {
 				drawAddForm();
@@ -242,15 +265,10 @@ function drawEditForm() {
 	});
 	$('#editEvt').click(function(){
 
-		var fullMinutes = (new Date()).getTimezoneOffset();
-		var hours = Math.floor(Math.abs(fullMinutes / 60));
-		var minutes = Math.abs(fullMinutes % 60);
-		var offset = (fullMinutes >= 0 ? '-' : '+') + (hours > 9 ? '' : '0') + hours + (minutes > 9 ? ':' : ':0') + minutes;
-
 		if($('#editEvtDate').val()!='') {
 			if($('#editEvtTimeStart').val()!='' && $('#editEvtTimeEnd').val()!='') {
-				var startDateStr = (new Date($('#editEvtDate').val()+'T'+$('#editEvtTimeStart').val()+':00'+offset)).toString();
-				var endDateStr = (new Date($('#editEvtDate').val()+'T'+$('#editEvtTimeEnd').val()+':00'+offset)).toString();
+				var startDateStr = (new Date($('#editEvtDate').val()+'T'+$('#editEvtTimeStart').val()+':00'+getMyOffset())).toString();
+				var endDateStr = (new Date($('#editEvtDate').val()+'T'+$('#editEvtTimeEnd').val()+':00'+getMyOffset())).toString();
 				deleteEvt($('#editId').val());
 				createEvt($('#editEvtName').val(), startDateStr, endDateStr, $('#editEvtNote').val(), $('#editEvtFile').val(), $('#editEvtLector').val());
 					drawInfoTip();
@@ -286,11 +304,9 @@ function drawImportForm() {
 		myStorage['events'] = [];
 		myStorage['freeid'] = 0;
 		for (var i = 0; i < v.length; i++) {
-			var pos = v[i].indexOf(':');
-			var key = v[i].substring(0, pos);
-			var value = v[i].substring(pos + 1, v[i].length);
-			if(value=='VCALENDAR') continue;
-			switch (key) {
+			var key = v[i].match(/(\w+).*:(.*)/);
+			var value = key[2];
+			switch (key[1]) {
 				case 'BEGIN':
 					if (value == 'VEVENT')
 						event = { id:0, title:'', start:'', end:'', note:'', file:'', lector:'' };
@@ -299,10 +315,10 @@ function drawImportForm() {
 					event.note = value.split("\\n").join('<br>');
 					break;
 				case 'DTSTART':
-					event.start = (new Date(value.replace(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2}).*/, '$1-$2-$3T$4:$5:$6'))).toString();
+					event.start = (new Date(value.replace(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2}).*/, '$1-$2-$3T$4:$5:$6'+getMyOffset()))).toString();
 					break;
 				case 'DTEND':
-					event.end = (new Date(value.replace(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2}).*/, '$1-$2-$3T$4:$5:$6'))).toString();
+					event.end = (new Date(value.replace(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2}).*/, '$1-$2-$3T$4:$5:$6'+getMyOffset()))).toString();
 					break;
 				case 'SUMMARY':
 					event.title = value;
@@ -319,7 +335,9 @@ function drawImportForm() {
 					break;
 			}
 		}
+		drawViewForm();
 	});
+	
 }
 
 function drawInfoTip() {
@@ -342,17 +360,24 @@ function clearInfoTip() {
 
 function formatDate(d) {
 	if (typeof d === 'string') d = new Date(d);
-	return d.getUTCFullYear() +
-	(d.getUTCMonth() < 9 ? '0' : '') + (d.getUTCMonth() + 1) +
-	(d.getUTCDate() < 10 ? '0' : '') + d.getUTCDate() +'T' +
-	(d.getUTCHours() < 10 ? '0' : '') + d.getUTCHours() +
-	(d.getUTCMinutes() < 10 ? '0' : '') + d.getUTCMinutes() + "00Z";
+	return d.getFullYear() +
+	(d.getMonth() < 9 ? '0' : '') + (d.getMonth() + 1) +
+	(d.getDate() < 10 ? '0' : '') + d.getDate() +'T' +
+	(d.getHours() < 10 ? '0' : '') + d.getHours() +
+	(d.getMinutes() < 10 ? '0' : '') + d.getMinutes() + "00Z";
+}
+
+function getMyOffset() {
+	var fullMinutes = (new Date()).getTimezoneOffset();
+	var hours = Math.floor(Math.abs(fullMinutes / 60));
+	var minutes = Math.abs(fullMinutes % 60);
+	return (fullMinutes >= 0 ? '-' : '+') + (hours > 9 ? '' : '0') + hours + (minutes > 9 ? ':' : ':0') + minutes;
 }
 
 function humanTime(sd,ed)  {
 	var startDate = new Date(sd);
 	var endDate = new Date(ed);
-	var date = [startDate.getFullYear(),parseInt((startDate.getMonth()<9?'0':'')+startDate.getMonth())+1,(startDate.getDate()<10?'0':'')+startDate.getDate()].join('-');
+	var date = [startDate.getFullYear(),(startDate.getMonth()<9?'0':'')+parseInt(startDate.getMonth()+1),(startDate.getDate()<10?'0':'')+startDate.getDate()].join('-');
 	var startTime = [(startDate.getHours()<10?'0':'')+startDate.getHours(),(startDate.getMinutes()<10?'0':'')+startDate.getMinutes()].join(':');
 	var endTime = [(endDate.getHours()<10?'0':'')+endDate.getHours(),(endDate.getMinutes()<10?'0':'')+endDate.getMinutes()].join(':');
 	return [date,startTime,endTime];
@@ -366,8 +391,8 @@ METHOD:PUBLISH\n";
 
 	for (var i in storage.events) {
 		if (!storage.events.hasOwnProperty(i)) continue;
-		var dtstart = i['start'];
-		if (typeof dtstart === 'undefined') continue;
+		if (typeof storage.events[i]['start'] === 'undefined') continue;
+		var dtstart = storage.events[i]['start'];
 		var dtend = new Date(dtstart);
 		dtend.setUTCHours(dtend.getUTCHours() + 1);
 		var ics_event = "BEGIN:VEVENT\n\
@@ -390,3 +415,28 @@ END:VEVENT\n";
 	return ics;
 }
 
+function printVersion() {
+	$('.layout').hide();
+	$('body').append($('<div />', { 'class': 'printer' }));
+	var mas = sortDate();
+	for(var i = 0; i < mas.length; i++) {
+		if(mas[i][1]+''==='null' || mas[i][1]+''==='undefined') continue;
+		var time = humanTime(mas[i][1].start, mas[i][1].end);
+		var row = $('<span />', { 'class': 'print_row' }).html('<p class=print_row_title>'+time[0]+' '+mas[i][1].title+' c '+time[1]+' до '+time[2]+'</p><p class=lector>'+(mas[i][1].lector==''?mas[i][1].note:mas[i][1].lector)+'</p>');
+		$('.printer').append(row);
+	}
+}
+
+function sortDate() {
+	var tmp = [];
+	var tmp_obj = [];
+	for(var i = 0; i < myStorage['events'].length; i++) {
+		if(myStorage['events'][i]+''==='null' || myStorage['events'][i]+''==='undefined') continue;
+		var j = tmp.length;
+		tmp[j] = []
+		tmp[j][0] = Date.parse(myStorage['events'][i].start);
+		tmp[j][1] = myStorage['events'][i];
+	}
+	return tmp.sort();
+
+}
